@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Video Autoplay Loop with Navbar</title>
+    <title>ScoutX Inc</title>
     <style>
         @font-face {
             font-family: 'Codec Pro';
@@ -20,17 +20,18 @@
             overflow: hidden;
             background: black;
         }
-        #fullscreen-video {
+        #fullscreen-video, #fullscreen-gif {
             position: absolute;
             top: 0;
             left: 50%;
             width: 100vw;
             height: auto;
             transform: translateX(-50%);
+            display: none;
         }
         .navbar {
             position: absolute;
-            top: 40px;
+            top: 20px;
             width: 100%;
             display: flex;
             justify-content: right;
@@ -65,7 +66,7 @@
             }
         }
         @media (max-width: 768px) {
-            #fullscreen-video {
+            #fullscreen-video, #fullscreen-gif {
                 width: 100vw;
                 height: auto;
             }
@@ -86,24 +87,27 @@
         <source src="video1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <img id="fullscreen-gif" src="gif1.gif" alt="Fullscreen GIF">
     <script>
-        function setVideoSource() {
+        function setMediaSource() {
             const video = document.getElementById('fullscreen-video');
+            const gif = document.getElementById('fullscreen-gif');
             const isPortrait = window.innerHeight > window.innerWidth;
-            const source = isPortrait ? 'video2.mp4' : 'video1.mp4';
 
-            if (video.src !== source) {
-                video.src = source;
-                video.load();
-                video.play();
+            if (isPortrait) {
+                video.style.display = 'none';
+                gif.style.display = 'block';
+            } else {
+                video.style.display = 'block';
+                gif.style.display = 'none';
             }
         }
 
-        window.addEventListener('resize', setVideoSource);
-        window.addEventListener('orientationchange', setVideoSource);
+        window.addEventListener('resize', setMediaSource);
+        window.addEventListener('orientationchange', setMediaSource);
 
-        // Set the correct video source on initial load
-        document.addEventListener('DOMContentLoaded', setVideoSource);
+        // Set the correct media source on initial load
+        document.addEventListener('DOMContentLoaded', setMediaSource);
     </script>
 </body>
 </html>
