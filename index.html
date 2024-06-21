@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Video Autoplay Loop with Navbar</title>
+    <style>
+        @font-face {
+            font-family: 'Codec Pro';
+            src: url('path_to_codec_pro.woff2') format('woff2'),
+                 url('path_to_codec_pro.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: black;
+        }
+        #fullscreen-video {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100vw;
+            height: auto;
+            transform: translateX(-50%);
+        }
+        .navbar {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            z-index: 10;
+        }
+        .navbar .contact-button {
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-family: 'Codec Pro', Arial, sans-serif;
+            animation: pulse 2s infinite;
+        }
+        .navbar .contact-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @media (max-width: 768px) {
+            #fullscreen-video {
+                width: 100vw;
+                height: auto;
+            }
+        }
+        @media (orientation: portrait) {
+            #fullscreen-video {
+                width: 100vw;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="mailto:Vikram.r.mahendru@gmail.com" class="contact-button">Contact</a>
+    </div>
+    <video id="fullscreen-video" autoplay loop muted>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</body>
+</html>
